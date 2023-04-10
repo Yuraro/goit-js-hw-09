@@ -34,23 +34,30 @@ flatpickr('#datetime-picker', options);
 
 function startTimer(timeRemaining) {
     function updateTimer() {
-    const { days, hours, minutes, seconds } = convertMs(timeRemaining);
+        const { days, hours, minutes, seconds } = convertMs(timeRemaining);
 
-    daysEl.textContent = addLeadingZero(days);
-    hoursEl.textContent = addLeadingZero(hours);
-    minutesEl.textContent = addLeadingZero(minutes);
-    secondsEl.textContent = addLeadingZero(seconds);
+        daysEl.textContent = addLeadingZero(days);
+        hoursEl.textContent = addLeadingZero(hours);
+        minutesEl.textContent = addLeadingZero(minutes);
+        secondsEl.textContent = addLeadingZero(seconds);
 
-    if (timeRemaining <= 0) {
-    clearInterval(timerId);
-    Notiflix.Notify.success('Countdown timer finished!');
+        if (timeRemaining <= 0) {
+            clearInterval(timerId);
+            daysEl.textContent = '00';
+            hoursEl.textContent = '00';
+            minutesEl.textContent = '00';
+            secondsEl.textContent = '00';
+            Notiflix.Notify.success('Countdown timer finished!');
+        }
+
+        timeRemaining -= 1000;
     }
 
-    timeRemaining -= 1000;
-}
     updateTimer();
     const timerId = setInterval(updateTimer, 1000);
 }
+
+
 
 function convertMs(ms) {
     const second = 1000;

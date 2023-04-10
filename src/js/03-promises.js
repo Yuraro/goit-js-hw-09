@@ -40,10 +40,8 @@ function createPromise(position, delay) {
         const shouldResolve = Math.random() > 0.3;
         if (shouldResolve) {
         resolve({ position, delay, success: true });
-        Notiflix.Notify.success(`Promise ${position} resolved in ${delay}ms.`);
     } else {
         reject({ position, delay, success: false });
-        Notiflix.Notify.failure(`Promise ${position} rejected in ${delay}ms.`);
     }
     }, delay);
 });
